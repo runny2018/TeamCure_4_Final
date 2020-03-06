@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item  android:id="@+id/nav_allout"
+           android:title="All Out"
+           android:icon="@drawable/ic_all_out_black_24dp"/>
+
+    <item android:id="@+id/nav_android"
+          android:title="Android"
+          android:icon="@drawable/ic_android_black_24dp"/>
+
+    <item android:id="@+id/nav_announce"
+          android:title="Announce"
+          android:icon="@drawable/ic_announcement_black_24dp"/>
+
+    <item android:id="@+id/nav_apps"
+          android:title="Apps"
+          android:icon="@drawable/ic_apps_black_24dp"/>
+
+    <item android:id="@+id/nav_archive"
+          android:title="Archive"
+          android:icon="@drawable/ic_archive_black_24dp"/>
+
+</menu>
