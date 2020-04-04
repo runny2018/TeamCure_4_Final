@@ -14,7 +14,6 @@ public class Post {
 
     @SerializedName("uid")
     private int uid;
-
     @SerializedName("user")
     private int user;
     @SerializedName("body")
@@ -27,6 +26,8 @@ public class Post {
     private int support;
     @SerializedName("img_identifier")
     private String img_identifier;
+
+
 
 
 

@@ -1,13 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clipToPadding="false"
+    android:focusableInTouchMode="true"
+    android:layout_margin="30dp">
 
-    <TextView
+
+    <ImageView
+        android:id="@+id/profile_completion"
+        android:layout_width="343dp"
+        android:layout_height="98dp"
+        android:src="@drawable/group"
+        />
+
+    <RelativeLayout
+        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Archive Page"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+        android:id="@+id/profile_relative_layout"
+        android:layout_below="@id/profile_completion"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_android_black_24dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"
+            />
+
+        <TextView
+            android:id="@+id/rohan_patil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rohan Patil"
+            android:textSize="22sp"
+            android:textColor="#000000"
+            android:layout_toRightOf="@id/profile_image2"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/cse_graduate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Computer Science Graduate"
+            android:textSize="15sp"
+            android:textColor="#1661BF"
+            android:layout_below="@id/rohan_patil"
+            android:layout_toRightOf="@id/profile_image2"
+            android:layout_marginLeft="10dp"/>
+
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:id="@+id/badges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Badges"
+        android:textSize="22sp"
+        android:textColor="#000000"
+        android:layout_below="@id/profile_relative_layout"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+    android:id="@+id/About"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="About"
+    android:textSize="22sp"
+    android:textColor="#000000"
+    android:layout_marginTop="20dp"
+    android:layout_below="@id/badges_imageview"/>
+
+
+
+
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/badges_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:src="@drawable/profiletwocombined"
+        android:layout_below="@id/badges"
+        android:scaleType="fitXY"
+        />
+    
+
+
+    <Button
+        android:id="@+id/change_language"
+        android:text="Change Language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/About"
+        android:layout_centerHorizontal="true"/>
+
+
+
+
+
+
 
 </RelativeLayout>

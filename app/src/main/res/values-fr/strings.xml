@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Cure</string>
     <string name="action_settings">Settings</string>
@@ -5,8 +6,7 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
 
-    <string name="hi_rohan">Hi Rohan</string>
-    <string name="good_morning">Good Morning!</string>
-    <string name="suggestions_for_you">Suggestions for you</string>
-
+    <string name="hi_rohan">Salut Rohan</string>
+    <string name="good_morning">Bonjour</string>
+    <string name="suggestions_for_you">Des suggestions pour vous</string>
 </resources>

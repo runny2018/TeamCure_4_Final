@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
-    <Button
-        android:id="@+id/add_post"
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Post"
-        android:onClick="addPost"
-        />
+        android:layout_height="wrap_content">
+
+
+
 
     <TextView
         android:id="@+id/json_text"
@@ -18,17 +25,20 @@
         android:layout_height="wrap_content"/>
 
 
+
+
     <TextView
-        android:layout_below="@id/add_post"
+
         android:id="@+id/hi_rohan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="35dp"
-        android:text="Hi Rohan"
-        android:textColor="#212121"
+        android:text="@string/hi_rohan"
+        android:textColor="#1661BF"
         android:textSize="24sp"
         android:textStyle="bold" />
+
 
     <TextView
         android:id="@+id/good_morning"
@@ -36,8 +46,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/hi_rohan"
         android:layout_marginLeft="35dp"
-        android:text="Good Morning!"
+        android:text="@string/good_morning"
         android:textSize="17dp" />
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentEnd="true"
+
+            android:src="@drawable/smile_bg"
+            />
+
+
 
     <TextView
         android:id="@+id/suggestions_for_you"
@@ -45,63 +65,333 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/good_morning"
         android:layout_marginLeft="35dp"
-        android:layout_marginTop="20dp"
-        android:text="Suggestions for you" />
+        android:layout_marginTop="10dp"
+        android:text="@string/suggestions_for_you" />
 
+    </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/suggestions_for_you"
-
-        android:layout_marginTop="8dp" />
-
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/last_card_view"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/recycler_view"
-        android:layout_margin="12dp"
-        app:cardBackgroundColor="#ffffff"
-        app:cardCornerRadius="16dp"
-
-
-        >
-
-
-        <TextView
-            android:id="@+id/title"
+        <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:text="Write a post"
-            android:textColor="#ffea00"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:scrollbars="none">
 
-        <TextView
-            android:id="@+id/share_your_thoughts"
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/suggestion_1"
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/suggestions_for_you"
+                    android:layout_margin="12dp"
+                    app:cardBackgroundColor="#ffffff"
+                    app:cardCornerRadius="16dp"
+
+
+                    >
+
+
+                    <TextView
+                        android:id="@+id/suggestion_1_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Article"
+                        android:textColor="#2F2F2F"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/suggestion_1_descp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="39dp"
+                        android:text="Know how the mind works and stay
+                                mentally healthy"
+                        android:textColor="#757575"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        />
+
+
+
+
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                android:id="@+id/suggestion_2"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/suggestions_for_you"
+                android:layout_margin="12dp"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="16dp"
+
+
+                >
+
+
+                <TextView
+                    android:id="@+id/suggestion_2_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Article"
+                    android:textColor="#2F2F2F"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/suggestion_2_descp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="39dp"
+                    android:text="Know how the mind works and stay
+                                mentally healthy"
+                    android:textColor="#757575"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    />
+
+
+
+
+
+            </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/suggestion_3"
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/suggestions_for_you"
+                    android:layout_margin="12dp"
+                    app:cardBackgroundColor="#ffffff"
+                    app:cardCornerRadius="16dp"
+
+
+                    >
+
+
+                    <TextView
+                        android:id="@+id/suggestion_3_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Article"
+                        android:textColor="#2F2F2F"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/suggestion_3_descp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="39dp"
+                        android:text="Know how the mind works and stay
+                                mentally healthy"
+                        android:textColor="#757575"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        />
+
+
+
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="39dp"
-            android:text="share your thoughts"
-            android:textColor="#757575"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            />
+            >
+        <View
+            android:id="@+id/grey_line"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cccccc"/>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/write_a_post"
+                android:layout_width="200dp"
+                android:layout_height="75dp"
+                android:layout_below="@id/grey_line"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/post"
+                    android:scaleType="fitXY" />
+
+
+                <TextView
+                    android:id="@+id/writeapost_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Write a Post"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/writeapost_descp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="39dp"
+                    android:text="Share your thoughts"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+
+                    />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/play_games"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_toRightOf="@id/write_a_post"
+                android:layout_below="@id/grey_line"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/play"
+                    android:scaleType="fitXY"/>
+
+
+
+
+                <TextView
+                    android:id="@+id/playgames_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Play"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/playgames_descp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="39dp"
+                    android:text="games"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+
+                    />
 
 
 
 
 
-    </androidx.cardview.widget.CardView>
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/curated_information"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_below="@id/play_games"
+                android:layout_margin="12dp"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/info"
+                    android:scaleType="fitXY"/>
+
+
+
+
+                <TextView
+                    android:id="@+id/curateinfo_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Curated Information"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/curatedinfo_descp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="39dp"
+                    android:text="all you need to know about mental health"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+
+                    />
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:id="@+id/grey_line_2"
+                android:layout_marginTop="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/curated_information"
+                android:background="#cccccc"/>
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -123,7 +413,7 @@
         android:id="@+id/posts_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/last_card_view"
+        android:layout_below="@id/suggestion_1"
         >
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -131,6 +421,8 @@
 
 
 
+    </LinearLayout>
 
 
-</RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

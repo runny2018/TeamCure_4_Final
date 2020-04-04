@@ -41,6 +41,26 @@ public interface JsonPlaceHolderApi {
     @GET("feed")
     Call<List<Post>> getPosts();
 
+    @FormUrlEncoded
+    @POST("feed")
+    Call<ResponseBody> createFeedPost(
+            @Field("user") int user,
+            @Field("body") String body,
+            @Field("feeling") int feeling,
+            @Field("support") int support,
+            @Field("imgIdentifier") int imgIdentifier
+
+    );
+
+    @FormUrlEncoded
+    @POST("")
+    Call<ResponseBody> createReview(
+            @Field("userFrom") int userFrom,
+            @Field("userTo") int userTo,
+            @Field("rating") double rating
+    );
+
+
 
 
     /*@FormUrlEncoded

@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.Manifest;
 import android.content.Intent;
@@ -19,21 +20,39 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import net.gotev.uploadservice.data.UploadNotificationConfig;
 import net.gotev.uploadservice.protocols.multipart.MultipartUploadRequest;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.jar.Pack200;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AddPost extends AppCompatActivity implements View.OnClickListener {
 
@@ -47,7 +66,12 @@ public class AddPost extends AppCompatActivity implements View.OnClickListener {
     private Uri filePath;
     private Bitmap bitmap;
 
-    private static final String UPLOAD_URL="ads";
+    private static final String UPLOAD_URL="http://3.229.232.102:3000/";
+
+    int support_value;
+    int feeling_value;
+
+    int counter;
 
 
     @Override
@@ -55,7 +79,12 @@ public class AddPost extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
 
+        counter=0;
+
+
         requestStoragePermission();
+
+        support_value=0;
 
         chooseImage=findViewById(R.id.choose_image);
         uploadImage=findViewById(R.id.upload_image);
@@ -66,12 +95,142 @@ public class AddPost extends AppCompatActivity implements View.OnClickListener {
         chooseImage.setOnClickListener(this);
         uploadImage.setOnClickListener(this);
 
+        Toolbar toolbar=findViewById(R.id.toolbar_in_post);
+
+        toolbar.setTitle("Write a Post");
+        toolbar.setSubtitle("Share your thoughts with other people & get support :)");
+
+        /*toolbar.setNavigationIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_arrow_back_black_24dp, null));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //What to do on back clicked
+            }
+        });*/
+
+        Switch support_switch=findViewById(R.id.support_switch);
+        support_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked==true){
+                    support_value=1;
+                }else{
+                    support_value=0;
+                }
+            }
+        });
+
+        Spinner spinner=findViewById(R.id.spinner);
+        String feelings[]={"Horrible", "Low", "Good", "Great", "Awesome"};
+        ArrayAdapter<String> adapter;
+        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,feelings);
+        spinner.setAdapter(adapter);
+
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch(position)
+                {
+                    case 0:feeling_value=0;
+                    break;
+                    case 1:feeling_value=1;
+                    break;
+                    case 2:feeling_value=2;
+                    break;
+                    case 3:feeling_value=3;
+                    break;
+                    case 4:feeling_value=4;
+                    break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        EditText text_field=findViewById(R.id.text_field);
+
+        Button post_feed_button=findViewById(R.id.post_feed_button);
+        post_feed_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createFeedPost();
+            }
+        });
+
+    }
+
+    private void createFeedPost(){
+        Random generator = new Random();
+        StringBuilder randomStringBuilder = new StringBuilder();
+        int randomLength = generator.nextInt(32);
+        char tempChar;
+        for (int i = 0; i < randomLength; i++){
+            tempChar = (char) (generator.nextInt(96) + 32);
+            randomStringBuilder.append(tempChar);
+        }
+
+
+
+
+        PostFeed postFeed=new PostFeed(1, text_field.getText().toString(), feeling_value,
+                support_value, randomStringBuilder.toString());
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://3.229.232.102:3000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+
+        counter++;
+
+
+        Call<ResponseBody> call=RetrofitClient
+                .getInstance()
+                .getApi()
+                .createFeedPost(counter, text_field.getText().toString(), feeling_value,
+                        support_value, new Random().nextInt(99999) + 1);
+
+
+
+
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    String s=response.body().string();
+                    Toast.makeText(AddPost.this, s, Toast.LENGTH_SHORT).show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(AddPost.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
 
 
 
 
     }
+
+
 
 
     @Override

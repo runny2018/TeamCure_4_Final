@@ -1,10 +1,13 @@
 package com.example.teamcure_4;
 
+import android.app.ActionBar;
 import android.app.LauncherActivity;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,11 +18,15 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ActionBarContainer;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,7 +55,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class AlloutFragment extends Fragment {
+public class AlloutFragment extends Fragment{
 
     private static final String URL_DATA="http://3.229.232.102:3000/feed";
     RecyclerView recyclerView;
@@ -59,22 +66,17 @@ public class AlloutFragment extends Fragment {
 
 
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         setHasOptionsMenu(true);
 
         final View rootView = inflater.inflate(R.layout.fragment_allout, container, false);
-        Button addPost = rootView.findViewById(R.id.add_post);
 
-        addPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addPostIntent = new Intent(getActivity(), AddPost.class);
-                startActivity(addPostIntent);
 
-            }
-        });
 
         final TextView json_text;
         json_text=rootView.findViewById(R.id.json_text);
@@ -125,26 +127,24 @@ public class AlloutFragment extends Fragment {
         });
 
 
-        recyclerView=rootView.findViewById(R.id.recycler_view);
+        recyclerView=rootView.findViewById(R.id.posts_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setNestedScrollingEnabled(false);
 
         adaptor=new ArticlesAdaptor();
         recyclerView.setAdapter(adaptor);
         articles=new ArrayList<>();
         getData();
 
+        CardView write_a_post=rootView.findViewById(R.id.write_a_post);
 
-
-
-
-
-
-
-
-
-
-
-
+        write_a_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addPostIntent = new Intent(getActivity(), AddPost.class);
+                startActivity(addPostIntent);
+            }
+        });
 
 
         return rootView;
@@ -187,6 +187,8 @@ public class AlloutFragment extends Fragment {
 
 
 
+
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -204,7 +206,11 @@ public class AlloutFragment extends Fragment {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(getActivity(), SupportActivity.class);
+            startActivity(intent);
+        }  else if (id == R.id.chat_kebab_option){
+            Intent intent=new Intent (getActivity(), ChatActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

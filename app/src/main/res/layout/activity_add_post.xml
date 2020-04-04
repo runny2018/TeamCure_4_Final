@@ -6,12 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".AddPost">
 
+    <Toolbar
+        android:id="@+id/toolbar_in_post"
+        android:layout_height="128dp"
+        android:layout_width="match_parent"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="#1661BF"
+        android:gravity="bottom"
+        android:titleTextColor="#ffffff"
+        android:subtitleTextColor="#ffffff"
+        android:titleMarginBottom="50dp"
+        />
+
     <EditText
+        android:layout_below="@id/toolbar_in_post"
         android:id="@+id/text_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Text"
         android:layout_margin="30dp"
+        android:background="@drawable/textinputborder"
+        android:padding="30dp"
+
         />
 
     <Button
@@ -36,6 +52,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
+
+    <Switch
+        android:id="@+id/support_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Provide Support:   "
+        android:layout_below="@id/choose_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
+    
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/support_switch"
+        android:layout_margin="20dp"
+
+        />
+
+    <Button
+        android:id="@+id/post_feed_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="POST"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"/>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/result"
+        android:layout_above="@id/post_feed_button"/>
+
+
+
+
+
+
 
 
 
